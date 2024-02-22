@@ -88,7 +88,7 @@ require 'bubbles'
 require 'nvim-treesitter.configs'.setup({
   auto_install = true,
   sync_install = false,
-  ensure_installed = { "golang", "rust", "yaml", "toml", "json", "make", "c", "lua", "vim", "vimdoc", "query" },
+  ensure_installed = { "go", "rust", "yaml", "toml", "json", "make", "c", "lua", "vim", "vimdoc", "query" },
   highlight = {
     enable = true,
   },
