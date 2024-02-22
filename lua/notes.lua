@@ -3,6 +3,7 @@ return {
     local window_height = vim.api.nvim_list_uis()[1].height
     local window_width = vim.api.nvim_list_uis()[1].width
     return {
+      -- style = "minimal",
       relative = "editor",
       border = "rounded",
       title = "Note",
