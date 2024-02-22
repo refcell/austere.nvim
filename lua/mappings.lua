@@ -6,6 +6,7 @@ vim.keymap.set("n", "-", vim.cmd.Ex) -- need nvim 0.8+
 
 -- Lazy Shortcuts --
 vim.keymap.set("n", "<C-p>", "<cmd>Lazy profile<cr>", { silent = true, desc = "Lazy Profile" })
+vim.keymap.set("n", "<leader>p", "<cmd>Lazy profile<cr>", { silent = true, desc = "Lazy Profile" })
 
 -- Files --
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree<cr>", { silent = true, desc = "Neotree" })
@@ -24,3 +25,17 @@ vim.keymap.set("n", "\\", "<cmd>split<cr>", { silent = true, desc = "Horizontal 
 -- Navigate tabs
 vim.keymap.set("n", "]t", function() vim.cmd.tabnext() end, { silent = true, desc = "Next Tab" })
 vim.keymap.set("n", "[t", function() vim.cmd.tabprevious() end, { silent = true, desc = "Previous Tab" })
+
+-- Comment
+vim.keymap.set(
+  "n",
+  "<leader>/",
+  function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+  { desc = "Toggle comment line" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>/",
+  "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+  { desc = "Toggle comment line" }
+)
