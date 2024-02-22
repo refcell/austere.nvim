@@ -31,6 +31,8 @@ require('lualine').setup {
     lualine_b = {
       { 'filename', color = { fg = mocha.teal } },
       { 'branch', color = { fg = mocha.maroon } },
+      { "os.date('%m/%d/%y')", color = { fg = mocha.sky } },
+      "require'lsp-status'.status()",
       {
         'diff',
         symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
