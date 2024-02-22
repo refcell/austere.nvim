@@ -1,4 +1,3 @@
-
 -- Set space as the leader key --
 vim.g.mapleader = " "
 
@@ -43,3 +42,30 @@ vim.keymap.set(
   "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
   { desc = "Toggle comment line" }
 )
+
+-- Mason Package Manager --
+vim.keymap.set("n", "<C-m>", "<cmd>Mason<cr>", { desc = "Mason Installer" })
+vim.keymap.set("n", "<C-U>", "<cmd>MasonUpdateAll<cr>", { desc = "Mason Update" })
+vim.keymap.set("n", "<leader>pm", "<cmd>Mason<cr>", { desc = "Mason Installer" })
+vim.keymap.set("n", "<leader>pM", "<cmd>MasonUpdateAll<cr>", { desc = "Mason Update" })
+
+-- Set Telescope Keybindings --
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find buffers" })
+vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = "Find word under cursor" })
+vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Find commands" })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Live grep" })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find buffers" })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find help tags" })
+vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = "Find man pages" })
+vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = "Find registers" })
+vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = "Find words" })
+vim.keymap.set('n', '<leader>fW', function()
+  builtin.live_grep {
+    additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
+  }
+end, { desc = "Find words in all files" })
+
+-- Telescope Keybindings when in Insert Mode --
+vim.keymap.set('i', '<C-s>', '<cmd>vsplit<cr>', { desc = "Open vertical split" })

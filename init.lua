@@ -1,165 +1,47 @@
--- Locals --
-require "mappings"
-require "plugins"
+-- Lazy Plugin System --
+require 'plugins'
 
--- Line numbers --
-vim.opt.number = true
-vim.opt.relativenumber = false
-vim.opt.cursorline = true
+-- Vim Global Options --
+require 'globals'
 
--- Insert line
-vim.opt.showmode = false
+-- Get Plugin Configs --
+local imason = require 'imason'
+local itele = require 'itele'
+local icomment = require 'icomment'
+local iline = require 'iline'
+local iterm = require 'iterm'
+local inoice = require 'inoice'
+local iwhich = require 'iwhich'
+local itree = require 'itree'
+local itreesitter = require 'itreesitter'
+local ineodev = { 'folke/neodev.nvim' }
+local ialpha = { 'goolord/alpha-nvim' }
+local iscope = { "tiagovla/scope.nvim" }
+local inotes = { "backdround/global-note.nvim" }
+local ineoconf = { 'folke/neoconf.nvim', cmd = 'Neoconf' }
+local itheme = { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 }
+local ipilot = { 'zbirenbaum/copilot.lua', lazy = true, event = 'VimEnter' }
 
--- Folds --
-vim.o.foldcolumn = '1' -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
-
--- Vim Spacing --
-vim.o.expandtab = true
-vim.o.smartindent = true
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-
--- Load External Plugins --
-local lazy = require "lazy"
+-- Add Plugins to Lazy --
+local lazy = require 'lazy'
 lazy.setup({
-  { "tiagovla/scope.nvim" },
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-  {
-    'goolord/alpha-nvim',
-  },
-  {
-  "zbirenbaum/copilot.lua",
-  lazy = false,
-  event = "VimEnter",
-  config = function()
-  vim.defer_fn(function()
-      require("copilot").setup {
-      panel = {
-          enabled = true,
-          auto_refresh = true,
-          ---@type table<'accept'|'next'|'prev'|'dismiss', false|string>
-          keymap = {
-          jump_prev = "[[",
-          jump_next = "]]",
-          accept = "<CR>",
-          refresh = "gr",
-          open = "<M-CR>",
-          },
-      },
-      suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          debounce = 50,
-          keymap = {
-          accept = "<M-l>",
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-          },
-      },
-      }
-  end, 100)
-  end,
-},
-  {
-    "akinsho/toggleterm.nvim",
-    cmd = { "ToggleTerm", "TermExec" },
-    opts = {
-      highlights = {
-        -- Normal = { link = "Normal" },
-        NormalNC = { link = "NormalNC" },
-        -- NormalFloat = { link = "NormalFloat" },
-        -- FloatBorder = { link = "FloatBorder" },
-        StatusLine = { link = "StatusLine" },
-        StatusLineNC = { link = "StatusLineNC" },
-        WinBar = { link = "WinBar" },
-        WinBarNC = { link = "WinBarNC" },
-      },
-      size = 10,
-      on_create = function()
-        vim.opt.foldcolumn = "0"
-        vim.opt.signcolumn = "no"
-      end,
-      open_mapping = [[<C-\>]],
-      -- shade_terminals = false,
-      -- shading_factor = 100,
-      direction = "float",
-      float_opts = { border = "rounded" },
-    },
-  },
-  {
-    'numToStr/Comment.nvim',
-    keys = {
-      { "gc", mode = { "n", "v" }, desc = "Comment toggle linewise" },
-      { "gb", mode = { "n", "v" }, desc = "Comment toggle blockwise" },
-    },
-    lazy = false,
-  },
-  {
-    "folke/noice.nvim",
-    after = "nui.nvim",
-    event = "VimEnter",
-    opts = {},
-    dependencies = {
-    "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
-    }
-  },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {}
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    },
-    opts = {
-  	  close_if_last_window = true,
-  	  popup_border_style = "rounded",
-	    filesystem = {
-        bind_to_cwd = false,
-        follow_current_file = { enabled = true },
-        filtered_items = {
-          visible = true,
-          hide_dotfiles = false,
-          hide_gitignored = false,
-          hide_hidden = false,
-        },
-      },
-      window = { position = "float" }
-    }
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-  },
-  {
-    "folke/neoconf.nvim",
-    cmd = "Neoconf",
-  },
-  {
-    'nvim-lualine/lualine.nvim',
-    options = { theme = 'catppuccin' },
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
-  },
-  "folke/neodev.nvim",
+  imason,
+  itreesitter,
+  ineodev,
+  ialpha,
+  iscope,
+  inotes,
+  ineoconf,
+  itheme,
+  ipilot,
+  itele,
+  icomment,
+  iline,
+  iterm,
+  inoice,
+  iwhich,
+  itree,
+  
   -- {
   --   "kevinhwang91/nvim-ufo",
   --   event = { "User AstroFile", "InsertEnter" },
@@ -196,34 +78,53 @@ lazy.setup({
 
 -- require('ufo').setup({})
 
--- Set Telescope Keybindings --
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find buffers" })
-vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = "Find word under cursor" })
-vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Find commands" })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Live grep" })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find buffers" })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find help tags" })
-vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = "Find man pages" })
-vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = "Find registers" })
-vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = "Find words" })
-vim.keymap.set('n', '<leader>fW', function()
-  builtin.live_grep {
-    additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
-  }
-end, { desc = "Find words in all files" })
+ -- Set Mappings after Telescope is loaded --
+require 'mappings'
+
+-- Lualine Bubbles --
+require 'bubbles'
+
+-- Treesitter Syntax Highlighting --
+require 'nvim-treesitter.configs'.setup({
+  auto_install = true,
+  sync_install = false,
+  ensure_installed = { "golang", "rust", "yaml", "toml", "json", "make", "c", "lua", "vim", "vimdoc", "query" },
+  highlight = {
+    enable = true,
+  },
+})
+
+-- Dashboard Setup --
+local dash = require 'alpha.themes.theta'.config
+require 'alpha'.setup(dash)
 
 -- Set the colorscheme --
-local theme = require "theme"
-vim.cmd.colorscheme 'catppuccin'
-require("catppuccin").setup(theme)
+local theme = require 'theme'
+vim.cmd.colorscheme('catppuccin')
+local catppuccin = require 'catppuccin'
+catppuccin.setup(theme)
 
-require("scope").setup({})
-require("toggleterm").setup{}
-require("noicecfg")()
+-- Noice: Messages, cmdline, and popupmenu --
+local noicecfg = require 'noicecfg'
+require 'noice'.setup(noicecfg)
 
-local dash = require 'alpha.themes.theta'.config
-require'alpha'.setup(dash)
+-- Scope Tabs with Telescope Setup --
+require 'scope'.setup()
+require 'telescope'.load_extension('scope')
 
-require 'bubbles'
+-- Floating Terminal Setup --
+require 'toggleterm'.setup()
+
+-- Copilot Setup --
+local pilotcfg = require 'pilotcfg'
+require 'copilot'.setup(pilotcfg)
+
+-- Notes and Associated Keybindings --
+local notes = require 'notes'
+require 'global-note'.setup(notes)
+vim.keymap.set("n", "<C-n>", require("global-note").toggle_note, {
+  desc = "Toggle global note",
+})
+vim.keymap.set("n", "<leader>n", require("global-note").toggle_note, {
+  desc = "Toggle global note",
+})
