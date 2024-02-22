@@ -7,6 +7,9 @@ vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.cursorline = true
 
+-- Insert line
+vim.opt.showmode = false
+
 -- Folds --
 vim.o.foldcolumn = '1' -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
@@ -28,6 +31,43 @@ lazy.setup({
     tag = '0.1.5',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
+  {
+    'goolord/alpha-nvim',
+  },
+  {
+  "zbirenbaum/copilot.lua",
+  lazy = false,
+  event = "VimEnter",
+  config = function()
+  vim.defer_fn(function()
+      require("copilot").setup {
+      panel = {
+          enabled = true,
+          auto_refresh = true,
+          ---@type table<'accept'|'next'|'prev'|'dismiss', false|string>
+          keymap = {
+          jump_prev = "[[",
+          jump_next = "]]",
+          accept = "<CR>",
+          refresh = "gr",
+          open = "<M-CR>",
+          },
+      },
+      suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 50,
+          keymap = {
+          accept = "<M-l>",
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+          },
+      },
+      }
+  end, 100)
+  end,
+},
   {
     "akinsho/toggleterm.nvim",
     cmd = { "ToggleTerm", "TermExec" },
@@ -182,5 +222,8 @@ require("catppuccin").setup(theme)
 require("scope").setup({})
 require("toggleterm").setup{}
 require("noicecfg")()
+
+local dash = require 'alpha.themes.theta'.config
+require'alpha'.setup(dash)
 
 require 'bubbles'

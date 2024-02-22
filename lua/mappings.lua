@@ -4,6 +4,10 @@ vim.g.mapleader = " "
 
 vim.keymap.set("n", "-", vim.cmd.Ex) -- need nvim 0.8+
 
+-- Indentation
+vim.keymap.set("v", "<S-Tab>", "<gv", { silent = true, desc = "Unindent line" })
+vim.keymap.set("v", "<Tab>", ">gv", { silent = true, desc = "Indent line" })
+
 -- Lazy Shortcuts --
 vim.keymap.set("n", "<C-p>", "<cmd>Lazy profile<cr>", { silent = true, desc = "Lazy Profile" })
 vim.keymap.set("n", "<leader>p", "<cmd>Lazy profile<cr>", { silent = true, desc = "Lazy Profile" })
