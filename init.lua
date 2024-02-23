@@ -7,6 +7,7 @@ require 'globals'
 -- Add Plugins to Lazy --
 local lazy = require 'lazy'
 lazy.setup({
+  require 'init.splits',
   require 'init.mason',
   require 'init.tele',
   require 'init.comment',
@@ -34,6 +35,13 @@ require('ufo').setup({
         return {'treesitter', 'indent'}
     end
 })
+
+-- Neotree Setup --
+-- local neotree = require 'neotree'
+-- require 'neo-tree'.setup(neotree)
+
+-- Setup Smart Splits --
+require('smart-splits').setup()
 
  -- Set Mappings after Telescope is loaded --
 require 'mappings'

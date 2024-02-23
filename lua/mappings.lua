@@ -1,6 +1,15 @@
 -- Set space as the leader key --
 vim.g.mapleader = " "
 
+--- Check if a plugin is defined in lazy.
+-- Useful with lazy loading when a plugin is not necessarily loaded yet
+---@param plugin string The plugin to search for
+---@return boolean available # Whether the plugin is available
+function is_available(plugin)
+  local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
+  return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
+end
+
 vim.keymap.set("n", "-", vim.cmd.Ex) -- need nvim 0.8+
 
 -- Indentation
@@ -30,18 +39,41 @@ vim.keymap.set("n", "]t", function() vim.cmd.tabnext() end, { silent = true, des
 vim.keymap.set("n", "[t", function() vim.cmd.tabprevious() end, { silent = true, desc = "Previous Tab" })
 
 -- Comment
-vim.keymap.set(
-  "n",
-  "<leader>/",
-  function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-  { desc = "Toggle comment line" }
-)
-vim.keymap.set(
-  "v",
-  "<leader>/",
-  "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
-  { desc = "Toggle comment line" }
-)
+if is_available 'Comment.api' then
+  vim.keymap.set(
+    "n",
+    "<leader>/",
+    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+    { desc = "Toggle comment line" }
+  )
+  vim.keymap.set(
+    "v",
+    "<leader>/",
+    "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+    { desc = "Toggle comment line" }
+  )
+end
+
+-- Smart Splits
+if is_available "smart-splits.nvim" then
+  vim.keymap.set("n", "<C-h>", function() require("smart-splits").move_cursor_left() end, { desc = "Move to left split" })
+  vim.keymap.set("n", "<C-j>", function() require("smart-splits").move_cursor_down() end, { desc = "Move to below split" })
+  vim.keymap.set("n", "<C-k>", function() require("smart-splits").move_cursor_up() end, { desc = "Move to above split" })
+  vim.keymap.set("n", "<C-l>", function() require("smart-splits").move_cursor_right() end, { desc = "Move to right split" })
+  vim.keymap.set("n", "<C-Up>", function() require("smart-splits").resize_up() end, { desc = "Resize split up" })
+  vim.keymap.set("n", "<C-Down>", function() require("smart-splits").resize_down() end, { desc = "Resize split down" })
+  vim.keymap.set("n", "<C-Left>", function() require("smart-splits").resize_left() end, { desc = "Resize split left" })
+  vim.keymap.set("n", "<C-Right>", function() require("smart-splits").resize_right() end, { desc = "Resize split right" })
+-- else
+--   maps.n["<C-h>"] = { "<C-w>h", desc = "Move to left split" }
+--   maps.n["<C-j>"] = { "<C-w>j", desc = "Move to below split" }
+--   maps.n["<C-k>"] = { "<C-w>k", desc = "Move to above split" }
+--   maps.n["<C-l>"] = { "<C-w>l", desc = "Move to right split" }
+--   maps.n["<C-Up>"] = { "<cmd>resize -2<CR>", desc = "Resize split up" }
+--   maps.n["<C-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" }
+--   maps.n["<C-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" }
+--   maps.n["<C-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" }
+end
 
 -- Mason Package Manager --
 vim.keymap.set("n", "<C-m>", "<cmd>Mason<cr>", { desc = "Mason Installer" })

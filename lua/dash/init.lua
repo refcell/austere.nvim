@@ -2,7 +2,7 @@ return {
     layout = {
         { type = "padding", val = 6 },
         require 'dash.header',
-        { type = "padding", val = 1 },
+        { type = "padding", val = 2 },
         require 'dash.mrus',
         { type = "padding", val = 1 },
         {
