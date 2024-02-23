@@ -21,6 +21,7 @@ lazy.setup({
   require 'init.notes',
   require 'init.neoconf',
   require 'init.theme',
+  require 'init.bufferline',
   require 'init.pilot',
   require 'init.promise',
   require 'init.alphas',

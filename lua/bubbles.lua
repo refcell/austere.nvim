@@ -1,4 +1,4 @@
-local mocha = require("catppuccin.palettes").get_palette "mocha"
+local mocha = require "utils".colors
 
 local bubbles_theme = {
   normal = {
