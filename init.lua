@@ -14,6 +14,7 @@ local inoice = require 'inoice'
 local iwhich = require 'iwhich'
 local itree = require 'itree'
 local itreesitter = require 'itreesitter'
+local itabs = { 'backdround/tabscope.nvim' }
 local ineodev = { 'folke/neodev.nvim' }
 local ialpha = { 'goolord/alpha-nvim' }
 local iscope = { "tiagovla/scope.nvim" }
@@ -21,6 +22,8 @@ local inotes = { "backdround/global-note.nvim" }
 local ineoconf = { 'folke/neoconf.nvim', cmd = 'Neoconf' }
 local itheme = { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 }
 local ipilot = { 'zbirenbaum/copilot.lua', lazy = true, event = 'VimEnter' }
+local ipromise = { 'kevinhwang91/promise-async' }
+local iufo = {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
 -- Add Plugins to Lazy --
 local lazy = require 'lazy'
@@ -41,48 +44,26 @@ lazy.setup({
   inoice,
   iwhich,
   itree,
-  
-  -- {
-  --   "kevinhwang91/nvim-ufo",
-  --   event = { "User AstroFile", "InsertEnter" },
-  --   dependencies = { "kevinhwang91/promise-async" },
-  --   opts = {
-  --     preview = {
-  --       mappings = {
-  --         scrollB = "<C-b>",
-  --         scrollF = "<C-f>",
-  --         scrollU = "<C-u>",
-  --         scrollD = "<C-d>",
-  --       },
-  --     },
-  --     provider_selector = function(_, filetype, buftype)
-  --       local function handleFallbackException(bufnr, err, providerName)
-  --         if type(err) == "string" and err:match "UfoFallbackException" then
-  --           return require("ufo").getFolds(bufnr, providerName)
-  --         else
-  --           return require("promise").reject(err)
-  --         end
-  --       end
-  --
-  --       return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
-  --         or function(bufnr)
-  --           return require("ufo")
-  --             .getFolds(bufnr, "lsp")
-  --             :catch(function(err) return handleFallbackException(bufnr, err, "treesitter") end)
-  --             :catch(function(err) return handleFallbackException(bufnr, err, "indent") end)
-  --         end
-  --     end,
-  --   },
-  -- },
+  itabs,
+  ipromise,
+  iufo,
 })
 
--- require('ufo').setup({})
+-- Pretty Folds --
+require('ufo').setup({
+    provider_selector = function(bufnr, filetype, buftype)
+        return {'treesitter', 'indent'}
+    end
+})
 
  -- Set Mappings after Telescope is loaded --
 require 'mappings'
 
 -- Lualine Bubbles --
 require 'bubbles'
+
+-- Tabscope Setup --
+require 'tabscope'.setup()
 
 -- Treesitter Syntax Highlighting --
 require 'nvim-treesitter.configs'.setup({

@@ -49,6 +49,8 @@ vim.keymap.set("n", "<C-U>", "<cmd>MasonUpdateAll<cr>", { desc = "Mason Update" 
 vim.keymap.set("n", "<leader>pm", "<cmd>Mason<cr>", { desc = "Mason Installer" })
 vim.keymap.set("n", "<leader>pM", "<cmd>MasonUpdateAll<cr>", { desc = "Mason Update" })
 
+-- Folds: <leader> z + ...
+
 -- Set Telescope Keybindings --
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
