@@ -1,0 +1,1 @@
+return { { 'backdround/tabscope.nvim' } }

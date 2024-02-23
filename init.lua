@@ -4,49 +4,28 @@ require 'plugins'
 -- Vim Global Options --
 require 'globals'
 
--- Get Plugin Configs --
-local imason = require 'imason'
-local itele = require 'itele'
-local icomment = require 'icomment'
-local iline = require 'iline'
-local iterm = require 'iterm'
-local inoice = require 'inoice'
-local iwhich = require 'iwhich'
-local itree = require 'itree'
-local itreesitter = require 'itreesitter'
-local itabs = { 'backdround/tabscope.nvim' }
-local ineodev = { 'folke/neodev.nvim' }
-local ialpha = { 'goolord/alpha-nvim' }
-local iscope = { "tiagovla/scope.nvim" }
-local inotes = { "backdround/global-note.nvim" }
-local ineoconf = { 'folke/neoconf.nvim', cmd = 'Neoconf' }
-local itheme = { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 }
-local ipilot = { 'zbirenbaum/copilot.lua', lazy = true, event = 'VimEnter' }
-local ipromise = { 'kevinhwang91/promise-async' }
-local iufo = {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-
 -- Add Plugins to Lazy --
 local lazy = require 'lazy'
 lazy.setup({
-  imason,
-  itreesitter,
-  ineodev,
-  ialpha,
-  iscope,
-  inotes,
-  ineoconf,
-  itheme,
-  ipilot,
-  itele,
-  icomment,
-  iline,
-  iterm,
-  inoice,
-  iwhich,
-  itree,
-  itabs,
-  ipromise,
-  iufo,
+  require 'init.mason',
+  require 'init.tele',
+  require 'init.comment',
+  require 'init.line',
+  require 'init.term',
+  require 'init.noice',
+  require 'init.which',
+  require 'init.tree',
+  require 'init.trees',
+  require 'init.scopes',
+  require 'init.notes',
+  require 'init.neoconf',
+  require 'init.theme',
+  require 'init.pilot',
+  require 'init.promise',
+  require 'init.alphas',
+  require 'init.neodev',
+  require 'init.tabs',
+  require 'init.ufo',
 })
 
 -- Pretty Folds --

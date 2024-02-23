@@ -46,8 +46,8 @@ vim.keymap.set(
 -- Mason Package Manager --
 vim.keymap.set("n", "<C-m>", "<cmd>Mason<cr>", { desc = "Mason Installer" })
 vim.keymap.set("n", "<C-U>", "<cmd>MasonUpdateAll<cr>", { desc = "Mason Update" })
-vim.keymap.set("n", "<leader>pm", "<cmd>Mason<cr>", { desc = "Mason Installer" })
-vim.keymap.set("n", "<leader>pM", "<cmd>MasonUpdateAll<cr>", { desc = "Mason Update" })
+vim.keymap.set("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason Installer" })
+vim.keymap.set("n", "<leader>M", "<cmd>MasonUpdateAll<cr>", { desc = "Mason Update" })
 
 -- Folds: <leader> z + ...
 
