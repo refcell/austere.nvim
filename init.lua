@@ -95,7 +95,7 @@ require 'nvim-treesitter.configs'.setup({
 })
 
 -- Dashboard Setup --
-local dash = require 'alpha.themes.theta'.config
+local dash = require 'dash'
 require 'alpha'.setup(dash)
 
 -- Set the colorscheme --
@@ -114,6 +114,14 @@ require 'telescope'.load_extension('scope')
 
 -- Floating Terminal Setup --
 require 'toggleterm'.setup()
+
+-- Setup Quick Lazygit Keybinding --
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+vim.keymap.set("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
 
 -- Copilot Setup --
 local pilotcfg = require 'pilotcfg'
