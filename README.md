@@ -14,7 +14,7 @@
 [License]: https://img.shields.io/badge/license-MIT-7795AF.svg
 [mit-license]: https://github.com/ethereum-optimism/axos/blob/main/LICENSE.md
 
-[Language]: https://img.shields.io/badge/language-lua-blue
+[Language]: https://img.shields.io/badge/language-lua-blue.svg
 [lang]: https://img.shields.io/badge/language-lua-blue
 
 **Austere is a minimally constructed neovim config built from the ground up.** https://github.com/refcell/austere.nvim/labels/beta
