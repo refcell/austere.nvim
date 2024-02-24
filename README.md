@@ -53,10 +53,28 @@ installation, you can simply run `just restore-backup`.
 - [`williamboman/mason.nvim`][mason]: Mason package manager
 - [`folke/neoconf.nvim`][neoconf]: Neovim config manager
 - [`folke/neodev.nvim`][neodev]: Convenience methods for neovim development 
-- folke/noice.nvim
-- backdround/global-note.nvim
-- 
+- [`folke/noice.nvim`][noice]: Messages, cmdline, popup ui
+- [`backdround/global-note.nvim`][notes]: Simple Global notepad
+- [`zbirenbaum/copilot.lua`][copilot]: Github Copilot plugin
+- [`kevinhwang91/promise-async`][promise]: Dependency
+- [`tiagovla/scope.nvim`][scope]: Scopes block codes for collapse and expansion
+- [`mrjones2014/smart-splits.nvim`][splits]: Manage buffer and tab splits
+- [`backdround/tabscope.nvim`][tabscope]: Tab scoping
+- [`nvim-telescope/telescope.nvim`][telescope]: Ergonomic search menu
+- [`akinsho/toggleterm.nvim`][term]: Popup terminal 
+- [`catppuccin/nvim`][catppuccin]:
+- [`nvim-treesitter/nvim-treesitter`][tree]:
+- [`kevinhwang91/nvim-ufo`][ufo]:
+- [`folke/which-key.nvim`][which]:
 
+[which]: https://github.com/folke/which-key.nvim
+[ufo]: https://github.com/kevinhwang91/nvim-ufo
+[tree]: https://github.com/nvim-treesitter/nvim-treesitter
+[catppuccin]: https://github.com/catppucin/nvim
+[term]: https://github.com/akinsho/toggleterm.nvim
+[telescope]: https://github.com/nvim-telescope/telescope.nvim
+[tabscope]: https://github.com/backdround/tabscope.nvim
+[noice]: https://github.com/folke/noice.nvim
 [neodev]: https://github.com/folke/neodev.nvim
 [neoconf]: https://github.com/folke/neoconf.nvim
 [mason]: https://github.com/williamboman/mason.nvim
