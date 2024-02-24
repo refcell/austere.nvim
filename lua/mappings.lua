@@ -21,19 +21,7 @@ vim.keymap.set("n", "<C-p>", "<cmd>Lazy profile<cr>", { silent = true, desc = "L
 vim.keymap.set("n", "<leader>p", "<cmd>Lazy profile<cr>", { silent = true, desc = "Lazy Profile" })
 
 -- Switch Colorschemes --
-vim.keymap.set("n", "<leader>t", function()
-  if vim.g.colors_name == "catppuccin-mocha" then
-    local theme = require 'themes.latte'
-    local catppuccin = require 'catppuccin'
-    catppuccin.setup(theme)
-    vim.cmd.colorscheme("catppuccin")
-  else
-    local theme = require 'themes.mocha'
-    local catppuccin = require 'catppuccin'
-    catppuccin.setup(theme)
-    vim.cmd.colorscheme("catppuccin")
-  end
-end, { silent = true, desc = "Toggle colorscheme" })
+vim.keymap.set("n", "<leader>t", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', {noremap = true, silent = true})
 
 -- Files --
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree<cr>", { silent = true, desc = "Neotree" })
