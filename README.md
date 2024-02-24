@@ -6,10 +6,16 @@ Austere is a minimally constructed neovim config built from the ground up.
 
 At its core, Austere is an opinionated [neovim][neovim] configuration with
 remote usage as a core design tennant. Austere is **not** meant to be a
-framework and provides a minimal configuration that can be adapted by directly
-modifying its source.
+framework and provides an implementation rich codebase that should be modified
+directly to extend components and add features.
 
-Performance is a primary goal without sacrificing aesthetic.
+Non-extensibility is intentional. Not supporting extensible usage acts as a
+forcing function to upstream modifications _directly_ to [Austere][a]. This
+way, [Austere][a] is maintained and constantly improved by its users.
+
+Finally, performance is a priority without sacrificing aesthetic. If you
+see a way to improve [Austere][a] while following this requirement,
+[contribute!](#contributing).
 
 ## Usage
 
@@ -39,8 +45,26 @@ installation, you can simply run `just restore-backup`.
 
 ## Plugin List
 
+- [`goolord/alpha-nvim`][alpha]: Startup dashboard
+- [`nvim-neo-tree/neo-tree`][neotree]: File system browser
+- [`akinsho/bufferline.nvim`][bufferline]: Top buffer line
+- [`numToStr/Comment.nvim`][comments]: Comment lines with keybindings
+- [`nvim-lualine/lualine.nvim`][lualine]: Bottom status line
+- [`williamboman/mason.nvim`][mason]: Mason package manager
+- [`folke/neoconf.nvim`][neoconf]: Neovim config manager
+- [`folke/neodev.nvim`][neodev]: Convenience methods for neovim development 
+- folke/noice.nvim
+- backdround/global-note.nvim
+- 
 
-
+[neodev]: https://github.com/folke/neodev.nvim
+[neoconf]: https://github.com/folke/neoconf.nvim
+[mason]: https://github.com/williamboman/mason.nvim
+[lualine]: https://github.com/nvim-lualine/lualine.nvim
+[comments]: https://github.com/numToStr/Comment.nvim
+[bufferline]: https://github.com/akinsho/bufferline.nvim
+[neotree]: https://github.com/nvim-neo-tree/neo-tree.nvim
+[alpha]: https://github.com/goolord/alpha-nvim
 
 ## Requirements
 

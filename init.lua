@@ -68,7 +68,7 @@ local dash = require 'dash'
 require 'alpha'.setup(dash)
 
 -- Set the colorscheme --
-local theme = require 'theme'
+local theme = require 'themes.mocha'
 vim.cmd.colorscheme('catppuccin')
 local catppuccin = require 'catppuccin'
 catppuccin.setup(theme)

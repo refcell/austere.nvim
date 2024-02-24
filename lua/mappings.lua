@@ -20,6 +20,21 @@ vim.keymap.set("v", "<Tab>", ">gv", { silent = true, desc = "Indent line" })
 vim.keymap.set("n", "<C-p>", "<cmd>Lazy profile<cr>", { silent = true, desc = "Lazy Profile" })
 vim.keymap.set("n", "<leader>p", "<cmd>Lazy profile<cr>", { silent = true, desc = "Lazy Profile" })
 
+-- Switch Colorschemes --
+vim.keymap.set("n", "<leader>t", function()
+  if vim.g.colors_name == "catppuccin-mocha" then
+    local theme = require 'themes.latte'
+    local catppuccin = require 'catppuccin'
+    catppuccin.setup(theme)
+    vim.cmd.colorscheme("catppuccin")
+  else
+    local theme = require 'themes.mocha'
+    local catppuccin = require 'catppuccin'
+    catppuccin.setup(theme)
+    vim.cmd.colorscheme("catppuccin")
+  end
+end, { silent = true, desc = "Toggle colorscheme" })
+
 -- Files --
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree<cr>", { silent = true, desc = "Neotree" })
 vim.keymap.set("n", "<leader>o", "<cmd>Neotree<cr>", { silent = true, desc = "Neotree" })
@@ -27,7 +42,7 @@ vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { silent = true, desc = "Save" })
 vim.keymap.set("n", "<leader>q", "<cmd>confirm q<cr>", { silent = true, desc = "Quit" })
 vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>", { silent = true, desc = "New File"})
 vim.keymap.set("n", "<C-n>", "<cmd>enew<cr>", { silent = true, desc = "New File"})
-vim.keymap.set("n", "<C-w>", "<cmd>w!<cr>", { silent = true, desc = "Force write"})
+vim.keymap.set("n", "<C-W>", "<cmd>w!<cr>", { silent = true, desc = "Force write"})
 vim.keymap.set("n", "<C-q>", "<cmd>qa!<cr>", { silent = true, desc = "Force quit all"})
 
 -- Layout --
@@ -39,33 +54,33 @@ vim.keymap.set("n", "]t", function() vim.cmd.tabnext() end, { silent = true, des
 vim.keymap.set("n", "[t", function() vim.cmd.tabprevious() end, { silent = true, desc = "Previous Tab" })
 
 -- Comment
-if is_available 'Comment.api' then
-  vim.keymap.set(
-    "n",
-    "<leader>/",
-    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-    { desc = "Toggle comment line" }
-  )
-  vim.keymap.set(
-    "v",
-    "<leader>/",
-    "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
-    { desc = "Toggle comment line" }
-  )
-end
+vim.keymap.set(
+  "n",
+  "<leader>/",
+  function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+  { desc = "Toggle comment line" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>/",
+  "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+  { desc = "Toggle comment line" }
+)
 
 -- Grep in file --
 vim.keymap.set("n", "<leader>fv", function() require("telescope.builtin").current_buffer_fuzzy_find() end, { desc = "Search words in file" })
 
 -- Smart Splits
-  vim.keymap.set("n", "<C-h>", function() require("smart-splits").move_cursor_left() end, { desc = "Move to left split" })
-  vim.keymap.set("n", "<C-j>", function() require("smart-splits").move_cursor_down() end, { desc = "Move to below split" })
-  vim.keymap.set("n", "<C-k>", function() require("smart-splits").move_cursor_up() end, { desc = "Move to above split" })
-  vim.keymap.set("n", "<C-l>", function() require("smart-splits").move_cursor_right() end, { desc = "Move to right split" })
-  vim.keymap.set("n", "<C-Up>", function() require("smart-splits").resize_up() end, { desc = "Resize split up" })
-  vim.keymap.set("n", "<C-Down>", function() require("smart-splits").resize_down() end, { desc = "Resize split down" })
-  vim.keymap.set("n", "<C-Left>", function() require("smart-splits").resize_left() end, { desc = "Resize split left" })
-  vim.keymap.set("n", "<C-Right>", function() require("smart-splits").resize_right() end, { desc = "Resize split right" })
+vim.keymap.set("n", "<C-h>", function() require("smart-splits").move_cursor_left() end, { desc = "Move to left split" })
+vim.keymap.set("n", "<C-Left>", "<C-h>", { desc = "Move to left split" })
+vim.keymap.set("n", "<leader><Left>", "<C-h>", { desc = "Move to left split" })
+vim.keymap.set("n", "<C-j>", function() require("smart-splits").move_cursor_down() end, { desc = "Move to below split" })
+vim.keymap.set("n", "<C-Down>", "<C-j>", { desc = "Move to below split" })
+vim.keymap.set("n", "<C-k>", function() require("smart-splits").move_cursor_up() end, { desc = "Move to above split" })
+vim.keymap.set("n", "<C-Up>", "<C-k>", { desc = "Move to above split" })
+vim.keymap.set("n", "<C-l>", function() require("smart-splits").move_cursor_right() end, { desc = "Move to right split" })
+vim.keymap.set("n", "<C-Right>", "<C-l>", { desc = "Move to right split" })
+-- vim.keymap.set("n", "<Right>", "<C-l>", { desc = "Move to right split" })
 
 -- Mason Package Manager --
 vim.keymap.set("n", "<C-m>", "<cmd>Mason<cr>", { desc = "Mason Installer" })
