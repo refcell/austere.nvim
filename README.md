@@ -3,7 +3,7 @@
 [![Luacheck]][actions]
 [![Release]][actions]
 [![Tag]][actions]
-[![Lanuage]][lang]
+[![Language]][lang]
 [![License]][mit-license]
 
 [Luacheck]: https://img.shields.io/github/actions/workflow/status/refcell/austere.nvim/ci.yml?branch=main&label=build
