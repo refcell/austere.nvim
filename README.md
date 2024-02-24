@@ -1,5 +1,22 @@
 # austere.nvim ☠️
 
+[![Luacheck]][actions]
+[![Release]][actions]
+[![Tag]][actions]
+[![Lanuage]][lang]
+[![License]][mit-license]
+
+[Luacheck]: https://img.shields.io/github/actions/workflow/status/refcell/austere.nvim/ci.yml?branch=main&label=build
+[Tag]: https://img.shields.io/github/actions/workflow/status/refcell/austere.nvim/tag.yml?branch=main&label=tag
+[Release]: https://img.shields.io/github/actions/workflow/status/refcell/austere.nvim/release.yml?branch=main&label=release
+[actions]: https://github.com/refcell/austere.nvim/actions?query=branch%3Amain
+
+[License]: https://img.shields.io/badge/license-MIT-7795AF.svg
+[mit-license]: https://github.com/ethereum-optimism/axos/blob/main/LICENSE.md
+
+[Language]: https://img.shields.io/badge/language-lua-blue
+[lang]: https://img.shields.io/badge/language-lua-blue
+
 **Austere is a minimally constructed neovim config built from the ground up.** https://github.com/refcell/austere.nvim/labels/beta
 
 ![](./etc/banner.png)
@@ -34,7 +51,7 @@ To use [Austere][a], clone the repo and then install the configuration.
 
 > [!NOTE]
 >
-> [`just`][just] must be installed to use the convenience bash Justfile target commands._
+> [`just`][just] must be installed to use the convenience bash Justfile target commands.
 
 ```bash
 git clone https://github.com/refcell/austere.nvim
@@ -53,11 +70,12 @@ installation, you can simply run `just restore-backup`.
 ## ⚡️ Requirements
 
 - [Neovim][neovim] >= 0.8.0 (needs to be built with LuaJIT)
-- Git >= 2.19.0 (for partial clones support)
+- [Git][git] >= 2.19.0 (for partial clones support)
 - [ripgrep][ripgrep] is used for fast, efficient live word greps.
 - [lazygit][lazygit] for a clean git ui
 - A Nerd Font (_optional_)
 
+[git]: https://git-scm.com/downloads
 [lazygit]: https://github.com/jesseduffield/lazygit
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [neovim]: https://github.com/neovim/neovim
@@ -69,7 +87,7 @@ installation, you can simply run `just restore-backup`.
 > The `leader` key is configured in [mappings.lua](./lua/mappings.lua) to
 > the space key.
 
-#### lazy.nvim
+### lazy.nvim
 
 The [lazy plugin manager][lazy] provides a robust, standardized way to manage
 neovim plugins. It provides profiling metrics, lazy loading and cache
@@ -82,26 +100,27 @@ optimizations for plugin loading, a clean ui, and [much more][lzfeats].
 
 [lzfeats]: https://github.com/folke/lazy.nvim?tab=readme-ov-file#-features
 
-#### Lazy Git
+### Lazy Git
 
 
 
-#### Bufferline
+### Bufferline
 
 
 
-#### Verbose Status Line
+### Verbose Status Line
 
 Austere uses [lualine][lualine] to 
 
-#### Hot Theme Toggling
+### Hot Theme Toggling
 
 `<leader>t` toggles inverse light or dark background, causing the colorscheme to alternate
 between the `mocha` and slightly modified `latte` [catppuccin][catppuccin] themes. 
 
 ## ⚙️ Architecture
 
-
+[init.lua](./init.lua) acts as the entrypoint for the neovim config. It performs a few key
+operations that is responsible for loading neovim. 
 
 ## 🔌 Plugins
 

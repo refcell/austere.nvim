@@ -1,0 +1,21 @@
+name: tag 
+
+on:
+  workflow_run:
+    workflows: ["luacheck"]
+    branches: [main]
+    types: 
+      - completed
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 20
+    steps:
+    - uses: actions/checkout@v4
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
