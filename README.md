@@ -7,9 +7,9 @@
 **[Install](#📦-usage)**
 | [Usage](#📦-usage)
 | [Requirements](#⚡️-requirements)
-| [Features][#✨-features-&-keybindings]
-| [Architecture][#⚙️-architecture]
-| [Plugins][#🔌-plugins]
+| [Features](#✨-features-&-keybindings)
+| [Architecture](#⚙️-architecture)
+| [Plugins](#🔌-plugins)
 | [Contributing](#🐛-contributing)
 | [License](#🔒-license)
 
