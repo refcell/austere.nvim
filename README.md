@@ -12,7 +12,7 @@
 [actions]: https://github.com/refcell/austere.nvim/actions?query=branch%3Amain
 
 [License]: https://img.shields.io/badge/license-MIT-7795AF.svg
-[mit-license]: https://github.com/ethereum-optimism/axos/blob/main/LICENSE.md
+[mit-license]: https://github.com/refcell/austere.nvim/blob/main/LICENSE.md
 
 [Language]: https://img.shields.io/badge/language-lua-blue.svg
 [lang]: https://img.shields.io/badge/language-lua-blue
