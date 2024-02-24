@@ -1,8 +1,19 @@
-# austere
+# austere.nvim ☠️
 
-Austere is a minimally constructed neovim config built from the ground up.
+**Austere is a minimally constructed neovim config built from the ground up.** https://github.com/refcell/austere.nvim/labels/beta
 
-## Overview
+![](./etc/banner.png)
+
+**[Install](#📦-usage)**
+| [Usage](#📦-usage)
+| [Requirements](#⚡️-requirements)
+| [Features][#✨-features-&-keybindings]
+| [Architecture][#⚙️-architecture]
+| [Plugins][#🔌-plugins]
+| [Contributing](#🐛-contributing)
+| [License](#🔒-license)
+
+## 📄 Overview
 
 At its core, Austere is an opinionated [neovim][neovim] configuration with
 remote usage as a core design tennant. Austere is **not** meant to be a
@@ -17,15 +28,17 @@ Finally, performance is a priority without sacrificing aesthetic. If you
 see a way to improve [Austere][a] while following this requirement,
 [contribute!](#contributing).
 
-## Usage
+## 📦 Usage
 
 To use [Austere][a], clone the repo and then install the configuration.
 
-_Notice, [`just`][just] must be installed to use the convenience bash Justfile target commands._
+> [!NOTE]
+>
+> [`just`][just] must be installed to use the convenience bash Justfile target commands._
 
 ```bash
-git clone https://github.com/refcell/austere
-cd austere
+git clone https://github.com/refcell/austere.nvim
+cd austere.nvim
 just backup-and-install
 ```
 
@@ -34,10 +47,48 @@ If a neovim config already exists in this directory, it will be copied in a
 backup directory `~/.config/nvim.bak`. If you need to revert the [Austere][a]
 installation, you can simply run `just restore-backup`.
 
-[a]: https://github.com/refcell/austere
+[a]: https://github.com/refcell/austere.nvim
 [just]: https://github.com/casey/just
 
-## Features
+## ⚡️ Requirements
+
+- [Neovim][neovim] >= 0.8.0 (needs to be built with LuaJIT)
+- Git >= 2.19.0 (for partial clones support)
+- [ripgrep][ripgrep] is used for fast, efficient live word greps.
+- [lazygit][lazygit] for a clean git ui
+- A Nerd Font (_optional_)
+
+[lazygit]: https://github.com/jesseduffield/lazygit
+[ripgrep]: https://github.com/BurntSushi/ripgrep
+[neovim]: https://github.com/neovim/neovim
+
+## ✨ Features & Keybindings
+
+> [!NOTE]
+>
+> The `leader` key is configured in [mappings.lua](./lua/mappings.lua) to
+> the space key.
+
+#### lazy.nvim
+
+The [lazy plugin manager][lazy] provides a robust, standardized way to manage
+neovim plugins. It provides profiling metrics, lazy loading and cache
+optimizations for plugin loading, a clean ui, and [much more][lzfeats].
+
+**Keybindings**
+
+- `ctrl + p` (or `leader + p`): Pull up Lazy profiling.
+- 
+
+[lzfeats]: https://github.com/folke/lazy.nvim?tab=readme-ov-file#-features
+
+#### Lazy Git
+
+
+
+#### Bufferline
+
+
 
 #### Verbose Status Line
 
@@ -48,12 +99,13 @@ Austere uses [lualine][lualine] to
 `<leader>t` toggles inverse light or dark background, causing the colorscheme to alternate
 between the `mocha` and slightly modified `latte` [catppuccin][catppuccin] themes. 
 
-## Architecture
+## ⚙️ Architecture
 
 
 
-## Plugin List
+## 🔌 Plugins
 
+- [`folke/lazy.nvim`][lazy]: Lazy Plugin Manager
 - [`goolord/alpha-nvim`][alpha]: Startup dashboard
 - [`nvim-neo-tree/neo-tree`][neotree]: File system browser
 - [`akinsho/bufferline.nvim`][bufferline]: Top buffer line
@@ -76,6 +128,7 @@ between the `mocha` and slightly modified `latte` [catppuccin][catppuccin] theme
 - [`kevinhwang91/nvim-ufo`][ufo]: Modern neovim folding
 - [`folke/which-key.nvim`][which]: Available keybinding popup menu
 
+[lazy]: https://github.com/folke/lazy.nvim
 [which]: https://github.com/folke/which-key.nvim
 [ufo]: https://github.com/kevinhwang91/nvim-ufo
 [tree]: https://github.com/nvim-treesitter/nvim-treesitter
@@ -84,6 +137,11 @@ between the `mocha` and slightly modified `latte` [catppuccin][catppuccin] theme
 [telescope]: https://github.com/nvim-telescope/telescope.nvim
 [tabscope]: https://github.com/backdround/tabscope.nvim
 [noice]: https://github.com/folke/noice.nvim
+[notes]: https://github.com/backdround/global-note.nvim
+[copilot]: https://github.com/zbirenbaum/copilot.lua
+[promise]: https://github.com/kevinhwang91/promise-async
+[scope]: https://github.com/tiagovla/scope.nvim
+[splits]: https://github.com/mrjones2014/smart-splits.nvim
 [neodev]: https://github.com/folke/neodev.nvim
 [neoconf]: https://github.com/folke/neoconf.nvim
 [mason]: https://github.com/williamboman/mason.nvim
@@ -93,29 +151,20 @@ between the `mocha` and slightly modified `latte` [catppuccin][catppuccin] theme
 [neotree]: https://github.com/nvim-neo-tree/neo-tree.nvim
 [alpha]: https://github.com/goolord/alpha-nvim
 
-## Requirements
-
-First and foremost, install [Neovim][neovim] itself.
-
-[ripgrep][ripgrep] is used for fast, efficient live word greps.
-
-[ripgrep]: https://github.com/BurntSushi/ripgrep
-[neovim]: https://github.com/neovim/neovim
-
-## Contributing
+## 🐛 Contributing
 
 All contributions are welcome!
 
 When contributing please provide a concise description of the issue, feature
 request, or your changes.
 
-## License
+## 🔒 License
 
 Open sourced under the [MIT License][license].
 
 [license]: ./LICENSE.md
 
-## Acknowledgements
+## ❤️ Acknowledgements
 
 - [@clabby][c]'s [dots][cd]
 - [Astronvim][avim]

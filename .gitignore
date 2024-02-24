@@ -1,6 +1,10 @@
 # Compiled Lua sources
 luac.out
 
+.DS_Store
+
+*.env
+
 # luarocks build files
 *.src.rock
 *.zip
