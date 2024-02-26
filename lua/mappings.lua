@@ -23,9 +23,18 @@ vim.keymap.set("n", "<leader>p", "<cmd>Lazy profile<cr>", { silent = true, desc 
 -- Switch Colorschemes --
 vim.keymap.set("n", "<leader>t", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', {noremap = true, silent = true})
 
+-- Neotree --
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { silent = true, desc = "Toggle Neotree" })
+vim.keymap.set("n", "<leader>o", function()
+  if vim.bo.filetype == "neo-tree" then
+    vim.cmd.wincmd "p"
+  else
+    vim.cmd.Neotree "focus"
+  end
+end,
+{ silent = true, desc = "Focus Neotree" })
+
 -- Files --
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree<cr>", { silent = true, desc = "Neotree" })
-vim.keymap.set("n", "<leader>o", "<cmd>Neotree<cr>", { silent = true, desc = "Neotree" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { silent = true, desc = "Save" })
 vim.keymap.set("n", "<leader>q", "<cmd>confirm q<cr>", { silent = true, desc = "Quit" })
 vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>", { silent = true, desc = "New File"})
