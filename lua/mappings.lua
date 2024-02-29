@@ -10,9 +10,10 @@ function is_available(plugin)
   return lazy_config_avail and lazy_config.spec.plugins[plugin] ~= nil
 end
 
-vim.keymap.set("n", "-", vim.cmd.Ex) -- need nvim 0.8+
+-- Exits to file explorer --
+vim.keymap.set("n", "-", vim.cmd.Ex)
 
--- Indentation
+-- Indentation --
 vim.keymap.set("v", "<S-Tab>", "<gv", { silent = true, desc = "Unindent line" })
 vim.keymap.set("v", "<Tab>", ">gv", { silent = true, desc = "Indent line" })
 
@@ -21,18 +22,24 @@ vim.keymap.set("n", "<C-p>", "<cmd>Lazy profile<cr>", { silent = true, desc = "L
 vim.keymap.set("n", "<leader>p", "<cmd>Lazy profile<cr>", { silent = true, desc = "Lazy Profile" })
 
 -- Switch Colorschemes --
-vim.keymap.set("n", "<leader>t", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>t", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', {noremap = true, silent = true, desc = "Light/dark theme toggle" })
+
+-- Toggleterm --
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>", { silent = true, desc = "Toggle Terminal" })
+vim.keymap.set("n", "\\", "<cmd>ToggleTerm<cr>", { silent = true, desc = "Toggle Terminal" })
 
 -- Neotree --
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { silent = true, desc = "Toggle Neotree" })
-vim.keymap.set("n", "<leader>o", function()
+local focusFn = function()
   if vim.bo.filetype == "neo-tree" then
     vim.cmd.wincmd "p"
   else
     vim.cmd.Neotree "focus"
   end
-end,
-{ silent = true, desc = "Focus Neotree" })
+end
+vim.keymap.set("n", "<leader>o", focusFn, { silent = true, desc = "Focus Neotree" })
+
+vim.keymap.set("n", "<C-l>", function() require("toggleterm.terminal").Terminal:new({ cmd = 'lazygit', hidden = true }):toggle() end, { silent = true, desc = "Lazygit terminal"})
 
 -- Files --
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { silent = true, desc = "Save" })
@@ -43,41 +50,36 @@ vim.keymap.set("n", "<C-W>", "<cmd>w!<cr>", { silent = true, desc = "Force write
 vim.keymap.set("n", "<C-q>", "<cmd>qa!<cr>", { silent = true, desc = "Force quit all"})
 
 -- Layout --
-vim.keymap.set("n", "|", "<cmd>vsplit<cr>", { silent = true, desc = "Vertical Split" })
-vim.keymap.set("n", "\\", "<cmd>split<cr>", { silent = true, desc = "Horizontal Split" }) 
+vim.keymap.set("n", "C-|", "<cmd>vsplit<cr>", { silent = true, desc = "Vertical Split" })
+vim.keymap.set("n", "C-\\", "<cmd>split<cr>", { silent = true, desc = "Horizontal Split" }) 
 
 -- Navigate tabs
 vim.keymap.set("n", "]t", function() vim.cmd.tabnext() end, { silent = true, desc = "Next Tab" })
 vim.keymap.set("n", "[t", function() vim.cmd.tabprevious() end, { silent = true, desc = "Previous Tab" })
 
--- Comment
-vim.keymap.set(
-  "n",
-  "<leader>/",
-  function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-  { desc = "Toggle comment line" }
-)
-vim.keymap.set(
-  "v",
-  "<leader>/",
-  "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
-  { desc = "Toggle comment line" }
-)
+-- Comments --
+local comment = function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end
+vim.keymap.set("n", "<leader>/", comment, { desc = "Toggle comment line" })
+local commentVisual = "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>"
+vim.keymap.set("v", "<leader>/", commentVisual, { desc = "Toggle comment line" })
 
 -- Grep in file --
-vim.keymap.set("n", "<leader>fv", function() require("telescope.builtin").current_buffer_fuzzy_find() end, { desc = "Search words in file" })
+local fuzzyFind = function() require("telescope.builtin").current_buffer_fuzzy_find() end
+vim.keymap.set("n", "<leader>fv", fuzzyFind, { desc = "Search words in file" })
 
--- Smart Splits
-vim.keymap.set("n", "<C-h>", function() require("smart-splits").move_cursor_left() end, { desc = "Move to left split" })
-vim.keymap.set("n", "<C-Left>", "<C-h>", { desc = "Move to left split" })
-vim.keymap.set("n", "<leader><Left>", "<C-h>", { desc = "Move to left split" })
-vim.keymap.set("n", "<C-j>", function() require("smart-splits").move_cursor_down() end, { desc = "Move to below split" })
-vim.keymap.set("n", "<C-Down>", "<C-j>", { desc = "Move to below split" })
-vim.keymap.set("n", "<C-k>", function() require("smart-splits").move_cursor_up() end, { desc = "Move to above split" })
-vim.keymap.set("n", "<C-Up>", "<C-k>", { desc = "Move to above split" })
-vim.keymap.set("n", "<C-l>", function() require("smart-splits").move_cursor_right() end, { desc = "Move to right split" })
-vim.keymap.set("n", "<C-Right>", "<C-l>", { desc = "Move to right split" })
--- vim.keymap.set("n", "<Right>", "<C-l>", { desc = "Move to right split" })
+-- Smart Splits --
+local moveLeft = function() require("smart-splits").move_cursor_left() end
+local moveRight = function() require("smart-splits").move_cursor_right() end
+local moveUp = function() require("smart-splits").move_cursor_up() end
+local moveDown = function() require("smart-splits").move_cursor_down() end
+vim.keymap.set("n", "<C-h>", moveLeft, { desc = "Move to left split" })
+vim.keymap.set("n", "<C-j>", moveDown, { desc = "Move to below split" })
+vim.keymap.set("n", "<C-k>", moveUp, { desc = "Move to above split" })
+vim.keymap.set("n", "<C-l>", moveRight, { desc = "Move to right split" })
+vim.keymap.set("n", "<leader><Left>", moveLeft, { desc = "Move to left split" })
+vim.keymap.set("n", "<leader><Right>", moveRight, { desc = "Move to right split" })
+vim.keymap.set("n", "<leader><Up>", moveUp, { desc = "Move to above split" })
+vim.keymap.set("n", "<leader><Down>", moveDown, { desc = "Move to below split" })
 
 -- Mason Package Manager --
 vim.keymap.set("n", "<C-m>", "<cmd>Mason<cr>", { desc = "Mason Installer" })
@@ -98,11 +100,12 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find help tags" }
 vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = "Find man pages" })
 vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = "Find registers" })
 vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = "Find words" })
-vim.keymap.set('n', '<leader>fW', function()
+local findWords = function()
   builtin.live_grep {
     additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
   }
-end, { desc = "Find words in all files" })
+end
+vim.keymap.set('n', '<leader>fW', findWords, { desc = "Find words in all files" })
 
 -- Telescope Keybindings when in Insert Mode --
 vim.keymap.set('i', '<C-s>', '<cmd>vsplit<cr>', { desc = "Open vertical split" })

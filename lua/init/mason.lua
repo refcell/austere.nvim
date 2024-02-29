@@ -23,4 +23,10 @@ return {
     },
     build = ":MasonUpdate",
   },
+  -- {
+  --   "williamboman/mason-lspconfig.nvim",
+  -- },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  -- }
 }

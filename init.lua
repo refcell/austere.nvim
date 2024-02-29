@@ -7,6 +7,7 @@ require 'globals'
 -- Add Plugins to Lazy --
 local lazy = require 'lazy'
 lazy.setup({
+  require 'init.rust',
   require 'init.splits',
   require 'init.mason',
   require 'init.tele',
@@ -28,6 +29,7 @@ lazy.setup({
   require 'init.neodev',
   require 'init.tabs',
   require 'init.ufo',
+  require 'init.harpoon',
 })
 
 -- Pretty Folds --
@@ -80,9 +82,12 @@ require 'noice'.setup(noicecfg)
 -- Scope Tabs with Telescope Setup --
 require 'scope'.setup()
 require 'telescope'.load_extension('scope')
+require 'cfg.telescopec'.setup()
 
 -- Floating Terminal Setup --
 require 'toggleterm'.setup()
+
+require("mason").setup()
 
 -- Setup Quick Lazygit Keybinding --
 local Terminal  = require('toggleterm.terminal').Terminal
@@ -95,6 +100,10 @@ vim.keymap.set("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = tr
 -- Copilot Setup --
 local pilotcfg = require 'pilotcfg'
 require 'copilot'.setup(pilotcfg)
+
+-- Harpoon Setup --
+-- Harpoon is a bookmarking plugin that allows you to quickly navigate between files and projects.
+require 'cfg.harpoonc'.setup()
 
 -- Notes and Associated Keybindings --
 local notes = require 'notes'
