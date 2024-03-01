@@ -31,6 +31,7 @@ return {
         show_unloaded = true,
         window = {
           mappings = {
+            ["<esc>"] = function() vim.cmd.Neotree "close" end,
             ["bd"] = "buffer_delete",
             ["<bs>"] = "navigate_up",
             ["."] = "set_root",
