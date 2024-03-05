@@ -29,5 +29,6 @@
   "tabscope.nvim": { "branch": "main", "commit": "cba52d18fbb1171cd92c7baf916e98fb720d6ae0" },
   "telescope.nvim": { "branch": "master", "commit": "5a747a9587e4bfc4ae086a38cc679fe54f983b69" },
   "toggleterm.nvim": { "branch": "main", "commit": "c80844fd52ba76f48fabf83e2b9f9b93273f418d" },
-  "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" }
+  "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
+  "window-picker": { "branch": "main", "commit": "41cfaa428577c53552200a404ae9b3a0b5719706" }
 }

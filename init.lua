@@ -15,6 +15,7 @@ lazy.setup({
   require 'init.line',
   require 'init.term',
   require 'init.noice',
+  require 'init.picker',
   require 'init.which',
   require 'init.tree',
   require 'init.trees',
